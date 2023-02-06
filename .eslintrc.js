@@ -16,12 +16,15 @@ module.exports = {
     },
     plugins: [
         'react',
+        '@typescript-eslint',
+        'i18next',
     ],
     rules: {
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         indent: [2, 4],
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+        'i18next/no-literal-string': ['error', { markupOnly: true }],
         'import/no-unresolved': 'off',
         'import/no-extraneous-dependencies': 'warn',
         'import/prefer-default-export': 'off',
