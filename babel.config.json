@@ -1,0 +1,15 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "entry",
+                "corejs": "3.22"
+            }
+        ]
+    ],
+    "plugins": [
+        "i18next-extract",
+        // […] your other plugins […]
+      ]
+}
