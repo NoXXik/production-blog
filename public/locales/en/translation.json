@@ -1,5 +1,12 @@
 {
   "Тестовый перевод": "Test translate",
   "Перевод": "Translate",
-  "Язык": "English"
+  "Язык": "English",
+  "Page not found": "Page not found",
+  "Привет": "Hi",
+  "('Главная страница')": "('Main Page')",
+  "('О нас')": "('About Us')",
+  "Произошла непредвиденная ошибка": "Something wrong error!",
+  "Обновить страницу": "Reload page",
+  "Выполнить ошибку": "Handle Error"
 }

@@ -11,12 +11,16 @@ interface NavbarProps {
 }
 
 export function Navbar({ className }: NavbarProps) {
-    const { t, i18n } = useTranslation('about');
-
+    const { t, i18n } = useTranslation();
     return (
         <div className={classNames(cls.navbar, {}, [])}>
             <div className={cls.links}>
-                <AppLink theme={AppLinkTheme.SECONDARY} className={cls.mainLink} to="/">
+                { t('Привет') }
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.mainLink}
+                    to="/"
+                >
                     {t('Главная страница')}
                 </AppLink>
                 <AppLink theme={AppLinkTheme.SECONDARY} to="/about">
