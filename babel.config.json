@@ -6,10 +6,16 @@
                 "useBuiltIns": "entry",
                 "corejs": "3.22"
             }
+        ],
+        "@babel/preset-typescript",
+        [
+            "@babel/preset-react",
+            {
+                "runtime": "automatic"
+            }
         ]
     ],
     "plugins": [
-        "i18next-extract",
-        // […] your other plugins […]
-      ]
+        "i18next-extract"
+    ]
 }
