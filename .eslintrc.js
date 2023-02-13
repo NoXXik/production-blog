@@ -8,8 +8,6 @@ module.exports = {
         'plugin:react/recommended',
         'airbnb',
     ],
-    overrides: [
-    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 'latest',
@@ -27,7 +25,10 @@ module.exports = {
         'react/jsx-filename-extension': [2, {
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
         }],
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': ['error', {
+            markupOnly: true,
+            ignoreAttribute: ['data-testid', 'to'],
+        }],
         'import/no-unresolved': 'off',
         'import/no-extraneous-dependencies': 'warn',
         'import/prefer-default-export': 'off',
@@ -44,4 +45,12 @@ module.exports = {
     globals: {
         __IS_DEV__: true,
     },
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
+    ],
 };

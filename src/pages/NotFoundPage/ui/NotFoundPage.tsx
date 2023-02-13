@@ -7,7 +7,7 @@ interface NotFoundPageProps {
     className?: string;
 }
 
-export const NotFoundPage = ({ className }: NotFoundPageProps) => {
+const NotFoundPage = ({ className }: NotFoundPageProps) => {
     const { t, i18n } = useTranslation();
 
     return (
@@ -16,3 +16,5 @@ export const NotFoundPage = ({ className }: NotFoundPageProps) => {
         </div>
     );
 };
+
+export default NotFoundPage;
