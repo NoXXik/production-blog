@@ -46,6 +46,7 @@ module.exports = {
         'no-unused-vars': 'warn',
         'react/jsx-props-no-spreading': 'warn',
         'max-len': ['error', { ignoreComments: true, code: 100 }],
+        'no-param-reassign': 'off',
     },
     globals: {
         __IS_DEV__: true,

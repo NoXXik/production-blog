@@ -12,6 +12,9 @@ export default {
 
     // The directory where Jest should store its cached dependency information
     // cacheDirectory: "/private/var/folders/gd/rhd2tkc13p9cph8cr2sxw6pr0000gp/T/jest_dy",
+    globals: {
+        __IS_DEV__: true,
+    },
 
     // Automatically clear mock calls, instances and results before every test
     clearMocks: true,
@@ -88,7 +91,6 @@ export default {
     // globalTeardown: undefined,
 
     // A set of global variables that need to be available in all test environments
-    // globals: {},
 
     // The maximum amount of workers used to run your tests.
     // Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of
