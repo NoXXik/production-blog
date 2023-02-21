@@ -9,10 +9,16 @@ import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { useTranslation } from 'react-i18next';
 import { Modal } from 'shared/ui/Modal';
+import { useDispatch } from 'react-redux';
+import { userActions } from 'entities/User';
 
 export function App() {
     const { theme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(userActions.initAuthData());
+    }, [dispatch]);
     return (
         <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
