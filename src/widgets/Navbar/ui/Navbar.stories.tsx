@@ -5,6 +5,12 @@ import {
     ThemeDecorator,
 } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import {
+    StoreDecorator,
+} from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import {
+    Primary,
+} from 'features/AuthByUsername/ui/LoginForm/LoginForm.stories';
 import { Navbar } from './Navbar';
 
 export default {
@@ -19,7 +25,16 @@ const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
 export const Light = Template.bind({});
 Light.args = {};
+Light.decorators = [StoreDecorator({ loginForm: { username: 'admin', password: '123' } })];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({ loginForm: { username: 'admin', password: '123' } })];
+
+export const withAuthUSer = Template.bind({});
+withAuthUSer.args = {};
+withAuthUSer.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({ user: { authData: { username: 'admin', id: '1' } } })];

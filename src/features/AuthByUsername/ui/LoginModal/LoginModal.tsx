@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes, FC, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal';
-import cls from './LoginModal.module.scss';
 import { LoginForm } from '../LoginForm/LoginForm';
 
 interface LoginModalProps {
@@ -21,7 +20,7 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             isOpen={isOpen}
             onClose={onClose}
             lazy
-            className={classNames(cls.LoginModal, {}, [className])}
+            className={classNames('LoginModal', {}, [className])}
         >
             <LoginForm />
         </Modal>

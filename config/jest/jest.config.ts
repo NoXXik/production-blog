@@ -15,7 +15,6 @@ export default {
     globals: {
         __IS_DEV__: true,
     },
-
     // Automatically clear mock calls, instances and results before every test
     clearMocks: true,
     testEnvironment: 'jsdom',
@@ -41,6 +40,7 @@ export default {
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        axios: 'axios/dist/node/axios.cjs',
     },
 
     // The glob patterns Jest uses to detect test files
