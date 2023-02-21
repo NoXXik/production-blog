@@ -47,6 +47,7 @@ module.exports = {
         'react/jsx-props-no-spreading': 'warn',
         'max-len': ['error', { ignoreComments: true, code: 100 }],
         'no-param-reassign': 'off',
+        'jsx-a11y/no-autofocus': 'off',
     },
     globals: {
         __IS_DEV__: true,

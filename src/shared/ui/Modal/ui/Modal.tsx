@@ -15,6 +15,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const TIMEOUT_DELAY = 200;
@@ -25,8 +26,10 @@ export const Modal: FC<ModalProps> = (props) => {
         children,
         isOpen,
         onClose,
+        lazy = false,
     } = props;
     const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
     const { theme } = useTheme();
     const closeHandler = useCallback(() => {
@@ -60,7 +63,16 @@ export const Modal: FC<ModalProps> = (props) => {
             window.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpen, onKeyDown]);
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+        return () => setIsMounted(false);
+    }, [isOpen]);
 
+    if (lazy && !isMounted) {
+        return null;
+    }
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className])}>
