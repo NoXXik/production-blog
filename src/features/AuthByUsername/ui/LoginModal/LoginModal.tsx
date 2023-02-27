@@ -1,7 +1,13 @@
-import React, { ButtonHTMLAttributes, FC, useState } from 'react';
+import React, {
+    ButtonHTMLAttributes, FC, Suspense, useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal';
-import { LoginForm } from '../LoginForm/LoginForm';
+// import { LoginForm } from '../LoginForm/LoginForm';
+import { Loader } from 'shared/ui/Loader';
+import {
+    LoginFormAsync,
+} from '../LoginForm/LoginForm.async';
 
 interface LoginModalProps {
     className?: string;
@@ -22,7 +28,9 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             lazy
             className={classNames('LoginModal', {}, [className])}
         >
-            <LoginForm />
+            <Suspense fallback={<Loader />}>
+                <LoginFormAsync />
+            </Suspense>
         </Modal>
     );
 };
