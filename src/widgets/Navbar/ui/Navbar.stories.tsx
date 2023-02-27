@@ -32,7 +32,6 @@ Dark.args = {};
 Dark.decorators = [
     ThemeDecorator(Theme.DARK),
     StoreDecorator({ loginForm: { username: 'admin', password: '123' } })];
-
 export const withAuthUSer = Template.bind({});
 withAuthUSer.args = {};
 withAuthUSer.decorators = [
