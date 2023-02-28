@@ -4,14 +4,15 @@ import { Button } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input';
 import { ButtonTheme } from 'shared/ui/Button/ui/Button';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { getLoginState, loginReducer } from 'features/AuthByUsername';
+import { useSelector, useStore } from 'react-redux';
+import { loginReducer } from 'features/AuthByUsername';
 import { Text } from 'shared/ui/Text';
 import { TextTheme } from 'shared/ui/Text/ui/Text';
 import {
     ReducersList,
     useDynamicModuleLoad,
 } from 'shared/lib/hooks/useDynamicModuleLoad';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import {
     getLoginIsLoading,
 } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -30,6 +31,7 @@ import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLogi
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
@@ -40,8 +42,9 @@ const LoginForm = memo((props: LoginFormProps) => {
     const { t } = useTranslation();
     const {
         className,
+        onSuccess,
     } = props;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
@@ -56,9 +59,12 @@ const LoginForm = memo((props: LoginFormProps) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, username, password]);
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [dispatch, username, password, onSuccess]);
     useDynamicModuleLoad({
         reducers: initialReducers,
         removeOnUnmount: false,

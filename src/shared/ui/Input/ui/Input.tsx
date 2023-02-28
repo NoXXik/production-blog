@@ -1,6 +1,4 @@
 import React, {
-    ButtonHTMLAttributes,
-    FC,
     InputHTMLAttributes,
     memo, useEffect, useRef, useState,
 } from 'react';

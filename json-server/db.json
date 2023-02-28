@@ -6,9 +6,18 @@
   "comments": [
     { "id": "1", "body": "some comment", "postId": 1 }
   ],
-  "profile": { "name": "typicode" },
   "users": [
     { "id": "1", "username": "admin", "password": "123" },
     { "id": "2", "title": "json-server2", "author": "typicode2" }
-  ]
+  ],
+  "profile": {
+    "first": "Ильдар",
+    "second": "Шариф",
+    "age": 23,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Almetevsk",
+    "username": "admin",
+    "avatar": "https://w7.pngwing.com/pngs/799/987/png-transparent-computer-icons-avatar-social-media-blog-font-awesome-avatar-heroes-computer-wallpaper-social-media.png"
+  }
 }

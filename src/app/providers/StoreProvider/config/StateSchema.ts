@@ -1,7 +1,3 @@
-// export interface CounterState {
-//     value: number;
-// }
-//
 import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
@@ -11,13 +7,15 @@ import {
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { ProfileSchema } from 'entities/Profile';
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
 
     // Асихронные редьюсеры
-    loginForm?: LoginSchema
+    loginForm?: LoginSchema;
+    profile?: ProfileSchema;
 }
 export type StateSchemaKey = keyof StateSchema;
 
