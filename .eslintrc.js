@@ -50,9 +50,11 @@ module.exports = {
         'jsx-a11y/no-autofocus': 'off',
         'no-unused-vars': 0,
         '@typescript-eslint/no-unused-vars': 1,
+        'no-undef': 'off',
     },
     globals: {
         __IS_DEV__: true,
+        __API__: true,
     },
     overrides: [
         {
