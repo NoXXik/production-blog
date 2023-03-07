@@ -87,6 +87,7 @@ const LoginForm = memo((props: LoginFormProps) => {
                 autoFocus
                 onChange={onChangeUsername}
                 value={username}
+                readonly={false}
             />
             <Input
                 type="text"
@@ -94,6 +95,7 @@ const LoginForm = memo((props: LoginFormProps) => {
                 placeholder={t('Введите пороль')}
                 onChange={onChangePassword}
                 value={password}
+                readonly={false}
             />
             <Button
                 theme={ButtonTheme.OUTLINE}

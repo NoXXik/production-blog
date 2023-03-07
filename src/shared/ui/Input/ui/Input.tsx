@@ -8,10 +8,11 @@ import cls from './Input.module.scss';
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 interface InputProps extends HTMLInputProps {
     className?: string;
-    value?: string;
+    value?: string | number;
     onChange?: (value: string) => void;
     type?: string;
     autoFocus?: boolean;
+    readonly?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -25,6 +26,7 @@ export const Input = memo((props: InputProps) => {
         type = 'text',
         placeholder,
         autoFocus = false,
+        readonly = false,
         ...otherProps
     } = props;
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,8 +49,12 @@ export const Input = memo((props: InputProps) => {
             ref.current?.focus();
         }
     }, [autoFocus]);
+    const mods = {
+        [cls.readonly]: readonly,
+    };
+    const isCarretVisible = isFocused && !readonly;
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder
                 && (
                     <div className={cls.placeholder}>
@@ -65,9 +71,10 @@ export const Input = memo((props: InputProps) => {
                     className={cls.input}
                     onFocus={onFocus}
                     onBlur={onBlur}
+                    readOnly={readonly}
                     {...otherProps}
                 />
-                {isFocused
+                {isCarretVisible
                     && <span className={cls.caret} style={{ left: `${caretPosition * 6.2}px` }} />}
             </div>
         </div>

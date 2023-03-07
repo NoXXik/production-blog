@@ -2,38 +2,71 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { fetchProfileData } from '../service/fetchProfileData/fetchProfileData';
 import { Profile, ProfileSchema } from '../types/profile';
+import {
+    updateProfileData,
+} from '../service/updateProfileData/updateProfileData';
 
 const initialState: ProfileSchema = {
     readonly: true,
     isLoading: false,
     error: undefined,
     data: undefined,
+    form: undefined,
 };
 
 export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
+        setReadonly: (state, action: PayloadAction<boolean>) => {
+            state.readonly = action.payload;
+        },
+        cancelEdit: (state) => {
+            state.readonly = true;
+            state.form = state.data;
+            state.validatErrors = undefined;
+        },
+        updateProfile: (state, action: PayloadAction<Profile>) => {
+            state.form = {
+                ...state.form,
+                ...action.payload,
+            };
+        },
     },
     extraReducers: (builder) => {
         // When our request is pending:
-        // - store the 'pending' state as the status for the corresponding pokemon name
         builder.addCase(fetchProfileData.pending, (state, action) => {
             state.error = undefined;
             state.isLoading = true;
         });
         // When our request is fulfilled:
-        // - store the 'fulfilled' state as the status for the corresponding pokemon name
-        // - and store the received payload as the data for the corresponding pokemon name
         builder.addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
             state.isLoading = false;
             state.data = action.payload;
+            state.form = action.payload;
         });
         // When our request is rejected:
-        // - store the 'rejected' state as the status for the corresponding pokemon name
         builder.addCase(fetchProfileData.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
+        });
+        // When our request is pending:
+        builder.addCase(updateProfileData.pending, (state, action) => {
+            state.validatErrors = undefined;
+            state.isLoading = true;
+        });
+        // When our request is fulfilled:
+        builder.addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
+            state.isLoading = false;
+            state.data = action.payload;
+            state.form = action.payload;
+            state.readonly = true;
+            state.validatErrors = undefined;
+        });
+        // When our request is rejected:
+        builder.addCase(updateProfileData.rejected, (state, action) => {
+            state.isLoading = false;
+            state.validatErrors = action.payload;
         });
     },
 });
