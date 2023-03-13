@@ -1,21 +1,19 @@
 import {
-    Suspense, useContext, useEffect, useState,
+    Suspense, useEffect, useState,
 } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { useTranslation } from 'react-i18next';
-import { Modal } from 'shared/ui/Modal';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInited, userActions } from 'entities/User';
 
 export function App() {
     const { theme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
+    const inited = useSelector(getUserInited);
     useEffect(() => {
         dispatch(userActions.initAuthData());
     }, [dispatch]);
@@ -25,7 +23,7 @@ export function App() {
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>
