@@ -23,6 +23,12 @@ jobs:
       - name: build production project
         run: npm run build:prod
         if: always()
+      - name: build storybook-static
+        run: npm run storybook:build
+        if: always()
+      - name: snapshot testing
+        run: npm run test:ui
+        if: always()
       - name: linting typescript
         run: npm run lint:ts
         if: always()
@@ -32,10 +38,5 @@ jobs:
       - name: unit testing
         run: npm run test:unit
         if: always()
-      - name: build storybook-static
-        run: npm run storybook:build
-        if: always()
-      - name: snapshot testing
-        run: npm run test:ui
-        if: always()
+
 
